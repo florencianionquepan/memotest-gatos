@@ -1,0 +1,22 @@
+{
+  "name": "memotest-gatos",
+  "version": "1.0.0",
+  "description": "Juego de memoria con gatitos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/florencianionquepan/memotest-gatos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/florencianionquepan/memotest-gatos/issues"
+  },
+  "homepage": "https://github.com/florencianionquepan/memotest-gatos#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.0"
+  }
+}

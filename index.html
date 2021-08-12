@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='./node_modules/bootstrap/dist/css/bootstrap.min.css'>
+    <style type='text/css'>
+    .abs-center {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     min-height: 80vh;
+    }
+    .container-fluid {
+        width: 90%;
+    }
+    </style>
+    <title>Memotest gatitos</title>
+    
+</head>
+<body class="d-flex h-100 text-center text-white bg-dark">
+    <div class="container-sm" id='boton'>
+        <div class="abs-center">
+            <main class='py-5'>
+                <h1> Juego de memoria de gatitos </h1>
+                <button type="button" class="btn btn-outline-danger" id='juego'>Jugar</button>
+            </main>
+        </div>
+    </div>
+    
+    <div class="visually-hidden" id='cartas'>
+        <div class="container-sm">
+            <div class="row justify-content-center">
+            
+                <div class="col-md-2">
+                    <h5> Tiempo: <strong id='reloj'> </strong></h5>
+                </div>
+                <div class="col-md-2">
+                        <h5> Intentos: <strong id='intentos'> </strong></h5>
+                </div>
+                <div class="col-md-3">
+                    <h5> Intentos erroneos: <strong id='intentos-2'> </strong></h5>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+        <div class="row">
+        <div class="row row-cols-4 justify-content-center">
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='0'></div>
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='1'></div>
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='2'></div>
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='3'></div>
+        </div>
+        <div class="row row-cols-4 justify-content-center">
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='4'></div>
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='5'></div>
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='6'></div>
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='7'></div>
+        </div>
+        <div class="row row-cols-4 justify-content-center">
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='8'></div>
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='9'></div>
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='10'></div>
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='11'></div>
+        </div>
+        <div class="row row-cols-4 justify-content-center">
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='12'></div>
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='13'></div>
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='14'></div>
+            <div class="col-md-2"><img src="./Img/cat.jpg" class="img-thumbnail"  id='15'></div>            
+        </div>
+        </div>
+        </div>
+
+        <div class="visually-hidden" id='cartel'>
+            <div class="abs-center">
+                
+                <div class="col">
+                    <h1 class="display-1">¡Ganaste!</h1>
+                </div>
+                
+            </div>
+        
+        </div>
+    </div>
+    </div>
+    
+</body>
+<script type='text/javascript' src='./juego.js'></script>
+</html>

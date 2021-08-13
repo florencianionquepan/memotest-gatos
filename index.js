@@ -22,17 +22,17 @@ function correrTiempo(){
     let minutos=0;
     let horas=0;
     cronometro=setInterval(function(){
-    segundos++;
-    if (segundos===60){
-        segundos=0;
-        minutos++;
-    }
-    if (minutos===60){
-        minutos=0;
-        horas++;
-    }
-    $reloj.innerHTML= horas + ':' + minutos + ':' + segundos;
-    },1000);
+        segundos++;
+        if (segundos===60){
+            segundos=0;
+            minutos++;
+        }
+        if (minutos===60){
+            minutos=0;
+            horas++;
+        }
+        $reloj.innerHTML= horas + ':' + minutos + ':' + segundos;
+        },1000);
 };
 
 function detenerse(){

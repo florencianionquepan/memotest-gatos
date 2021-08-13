@@ -70,7 +70,7 @@ function mostrarCarta(e){
     let $elemento=e.target;
     let value=$elemento.id;
     let v=lista[value];
-    $elemento.setAttribute('src',`./Img/gato${v}.jpg`);
+    $elemento.setAttribute('src',`./img/gato${v}.jpg`);
     listaClick.push(v);
     if (cont===2){
         chequearJugada(listaClick);
@@ -110,7 +110,7 @@ function ocultarCartas(list){
     for (let i=0; i<2; i++){
         let id=lista.indexOf(list[i]);
         let $elemento=document.getElementById(`${id}`);
-        $elemento.setAttribute('src','./Img/cat.jpg');
+        $elemento.setAttribute('src','./img/gato.jpg');
     };
 };
 

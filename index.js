@@ -90,14 +90,12 @@ function chequearJugada(list){
                 borrarCartas(list);
             },500);
             par++;
-            return;
         }
         if (list[1] === (list[0]+8)){
             setTimeout(function(){
                 borrarCartas(list);
             },500);
             par++;
-            return;
         }
         else {
             setTimeout(function(){

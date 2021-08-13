@@ -8,7 +8,7 @@ const lista=generarOrden();
 const $reloj=document.querySelector('#reloj');
 let cronometro;
 const $intentos=document.querySelector('#intentos');
-const $intentose=document.querySelector('#intentos-2');
+const $intentosErroneos=document.querySelector('#intentos-erroneos');
 
 function comenzarJuego(){
     correrTiempo();
@@ -102,7 +102,7 @@ function chequearJugada(list){
                 ocultarCartas(list);
             },500);
             cantidadIntentosFallidos++;
-            $intentose.textContent= cantidadIntentosFallidos;
+            $intentosErroneos.textContent= cantidadIntentosFallidos;
         }
 }
 

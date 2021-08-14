@@ -2,9 +2,11 @@ document.querySelector('#juego').onclick= comenzarJuego;
 let cantidadIntentos=0;
 let cantidadIntentosFallidos=0;
 let contadorClicks=0;
+let idCartas=[];
 let clasesCartas=[];
 let par=0;
-const lista=generarOrden();
+const cantidadCartas=8;
+const lista=generarOrden(cantidadCartas);
 const $reloj=document.querySelector('#reloj');
 let cronometro;
 const $intentos=document.querySelector('#intentos');
@@ -53,13 +55,19 @@ function mostrarCartas(){
     document.querySelector('#cartas').className="container-sm";
 }
 
-function generarOrden(){
+function generarOrden(cantidadCartas){
     const orden=[];
-    for (let i=0; i<16; i++){
-        orden.push(Math.ceil(Math.random()*16));
+    const longitud=cantidadCartas*2
+    for (let i=0; i<longitud; i++){
+        orden.push(Math.ceil(Math.random()*longitud));
            while (orden.indexOf(orden[i])!==i){ 
-                orden[i]=(Math.ceil(Math.random()*16));
+                orden[i]=(Math.ceil(Math.random()*longitud));
             }
+    }
+    for (let i=0; i<longitud;i++){
+        if (orden[i]>8){
+            orden[i]-=8;
+        }
     }
 return orden;
 }
@@ -69,57 +77,50 @@ function mostrarCarta(e){
     contadorClicks++;
     let $elemento=e.target;
     let value=$elemento.id;
+    idCartas.push(value);
     let v=lista[value];
     $elemento.setAttribute('src',`./img/gato${v}.jpg`);
     clasesCartas.push(v);
     if (contadorClicks===2){
-        chequearJugada(clasesCartas);
+        chequearJugada(clasesCartas,idCartas);
         cantidadIntentos++;
         $intentos.textContent= cantidadIntentos;
         contadorClicks=0;
         clasesCartas=[];
+        idCartas=[];
     }
     setTimeout(function(){
         ganaJuego(par);
     },1000);
 };
 
-function chequearJugada(clasesCartas){
-        if (clasesCartas[1] === (clasesCartas[0]-8)){
+function chequearJugada(clasesCartas,idCartas){
+        if (clasesCartas[1] === clasesCartas[0]){
             setTimeout(function(){
-                borrarCartas(clasesCartas);
+                borrarCartas(idCartas);
             },500);
             par++;
-        }
-        if (clasesCartas[1] === (clasesCartas[0]+8)){
+        }else{
             setTimeout(function(){
-                borrarCartas(clasesCartas);
-            },500);
-            par++;
-        }
-        else {
-            setTimeout(function(){
-                ocultarCartas(clasesCartas);
+                ocultarCartas(idCartas);
             },500);
             cantidadIntentosFallidos++;
             $intentosErroneos.textContent= cantidadIntentosFallidos;
-        }
+        };
 }
 
-function ocultarCartas(clasesCartas){
-    for (let i=0; i<2; i++){
-        let id=lista.indexOf(clasesCartas[i]);
-        let $elemento=document.getElementById(`${id}`);
+function ocultarCartas(idCartas){
+    idCartas.forEach(function(id){
+        let $elemento=document.getElementById(id);
         $elemento.setAttribute('src','./img/gato.jpg');
-    };
+    })
 };
 
-function borrarCartas(clasesCartas){
-    for (let i=0; i<2; i++){
-        let id=lista.indexOf(clasesCartas[i]);
-        let $elemento=document.getElementById(`${id}`);
+function borrarCartas(idCartas){
+    idCartas.forEach(function(id){
+        let $elemento=document.getElementById(id);
         $elemento.className='visually-hidden';
-    };
+    })    
 };
 
 function ganaJuego(par){

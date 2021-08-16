@@ -5,12 +5,34 @@ let contadorClicks=0;
 let idCartas=[];
 let clasesCartas=[];
 let par=0;
-const cantidadCartas=8;
+const cantidadCartas=10;
 const lista=generarOrden(cantidadCartas);
+console.log(lista);
+
+configurarTablero(cantidadCartas);
+function configurarTablero(cantidadCartas){
+    if (cantidadCartas===4){
+        return;
+    } if (cantidadCartas===8){
+        mostrarDiv('tercer');
+        mostrarDiv('cuarto');
+    } if(cantidadCartas ===10){
+        mostrarDiv('tercer');
+        mostrarDiv('cuarto');
+        mostrarDiv('quinto');
+    }
+};
+
+function mostrarDiv(tipo){
+    const $div=document.querySelector(`#${tipo}`);
+    $div.className="row row-cols-4 justify-content-center";
+}
+
 const $reloj=document.querySelector('#reloj');
 let cronometro;
 const $intentos=document.querySelector('#intentos');
 const $intentosErroneos=document.querySelector('#intentos-erroneos');
+const $cartas=document.querySelector('#cartas');
 
 function comenzarJuego(){
     correrTiempo();
@@ -52,25 +74,41 @@ function ocultarboton(){
 }
 
 function mostrarCartas(){
-    document.querySelector('#cartas').className="container-sm";
+    $cartas.className="container-sm";
 }
 
 function generarOrden(cantidadCartas){
     const orden=[];
-    const longitud=cantidadCartas*2
+    const longitud=cantidadCartas*2;
     for (let i=0; i<longitud; i++){
         orden.push(Math.ceil(Math.random()*longitud));
            while (orden.indexOf(orden[i])!==i){ 
                 orden[i]=(Math.ceil(Math.random()*longitud));
             }
     }
-    for (let i=0; i<longitud;i++){
-        if (orden[i]>8){
-            orden[i]-=8;
-        }
+    if (cantidadCartas===4){
+        for (let i=0; i<longitud;i++){
+            if (orden[i]>4){
+                orden[i]-=4;
+            };
+        };
     }
+    if (cantidadCartas===8){
+        for (let i=0; i<longitud;i++){
+            if (orden[i]>8){
+                orden[i]-=8;
+            };
+        };
+    };
+    if (cantidadCartas===10){
+        for (let i=0; i<longitud;i++){
+            if (orden[i]>10){
+                orden[i]-=10;
+            };
+        };
+    };
 return orden;
-}
+};
 
 
 function mostrarCarta(e){
@@ -82,16 +120,26 @@ function mostrarCarta(e){
     $elemento.setAttribute('src',`./img/gato${v}.jpg`);
     clasesCartas.push(v);
     if (contadorClicks===2){
-        chequearJugada(clasesCartas,idCartas);
-        cantidadIntentos++;
-        $intentos.textContent= cantidadIntentos;
-        contadorClicks=0;
-        clasesCartas=[];
-        idCartas=[];
-    }
+        if (esLaMismaCarta(idCartas)){
+            contadorClicks=1;
+            idCartas.pop();
+            clasesCartas.pop();
+        }else{
+            chequearJugada(clasesCartas,idCartas);
+            cantidadIntentos++;
+            $intentos.textContent= cantidadIntentos;
+            contadorClicks=0;
+            clasesCartas=[];
+            idCartas=[];
+        }
+    };
     setTimeout(function(){
         ganaJuego(par);
     },1000);
+};
+
+function esLaMismaCarta(idCartas){
+    return (idCartas[0]===idCartas[1]);
 };
 
 function chequearJugada(clasesCartas,idCartas){
@@ -113,21 +161,20 @@ function ocultarCartas(idCartas){
     idCartas.forEach(function(id){
         let $elemento=document.getElementById(id);
         $elemento.setAttribute('src','./img/gato.jpg');
-    })
+    });
 };
 
 function borrarCartas(idCartas){
     idCartas.forEach(function(id){
         let $elemento=document.getElementById(id);
         $elemento.className='visually-hidden';
-    })    
+    });
 };
 
 function ganaJuego(par){
-    if (par===8){
+    if (par===cantidadCartas){
         const $cartel=document.querySelector('#cartel');
         $cartel.className='';
         detenerTiempo();
-    }
+    };
 };
-

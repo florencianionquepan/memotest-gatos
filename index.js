@@ -7,7 +7,7 @@ let clasesCartas=[];
 let par=0;
 const cantidadCartas=10;
 const lista=generarOrden(cantidadCartas);
-console.log(lista);
+
 
 configurarTablero(cantidadCartas);
 function configurarTablero(cantidadCartas){
